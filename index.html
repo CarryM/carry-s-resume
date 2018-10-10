@@ -1,0 +1,49 @@
+<!DOCTYPE html><html><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,user-scalable=no"><title>知识大比拼</title><script src=https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js></script><script src=https://res.wx.qq.com/open/js/jweixin-1.0.0.js></script><style></style><link href=./static/css/app.1fb1484bf2d983706f0a7eda9f4ca12d.css rel=stylesheet></head><body><div id=app></div><script>var configs;
+    $.ajax({
+        type:'post',
+        async: false,
+        url:'http://choujiang.shidaitech.net/api/getApp',
+        data: {url: location.href.split('#')[0]},
+        success(res){
+            configs = JSON.parse(res);
+        }
+    })
+      wx.config({
+          debug: false,
+          appId: configs.appId,
+          timestamp: configs.timestamp,
+          nonceStr: configs.nonceStr,
+          signature: configs.signature,
+          jsApiList: configs.jsApiList
+      });
+    wx.ready(function () {
+        wx.onMenuShareAppMessage({
+            title: '知识大比拼', // 分享标题
+            desc: '我已报名知识大比拼，快来和我一决高下吧！', // 分享描述
+            link: 'http://choujiang.shidaitech.net/index', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: 'http://choujiang.shidaitech.net/shareLogo.png', // 分享图标
+            type: '', // 分享类型,music、video或link，不填默认为link
+            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+            success: function () {
+                // location.href='https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MjM5Mzg2MTk5MQ==&scene=124#wechat_redirect';
+                // 用户确认分享后执行的回调函数
+            },
+            cancel: function () {
+                // alert('取消分享！！');
+                // 用户取消分享后执行的回调函数
+            }
+        });
+        wx.onMenuShareTimeline({
+            title: '我已报名知识大比拼，快来和我一决高下吧！', // 分享标题
+            link: 'http://choujiang.shidaitech.net/index', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: 'http://choujiang.shidaitech.net/shareLogo.png', // 分享图标
+            success: function () {
+                // location.href='https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MjM5Mzg2MTk5MQ==&scene=124#wechat_redirect';
+                // 用户确认分享后执行的回调函数
+            },
+            cancel: function () {
+
+                // 用户取消分享后执行的回调函数
+            }
+        });
+    });</script><script type=text/javascript src=./static/js/manifest.3ad1d5771e9b13dbdad2.js></script><script type=text/javascript src=./static/js/vendor.0cdbd14d573bd31a6621.js></script><script type=text/javascript src=./static/js/app.862e91db8b0e9a80ca91.js></script></body></html>
